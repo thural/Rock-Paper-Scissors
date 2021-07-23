@@ -1,45 +1,72 @@
-        
-            const button = document.querySelector('button');
+    
+    const button = document.querySelector('button');
 
-            button.onclick = function(){
-                let choices=['rock', 'paper', 'scissors'];
-                let randomChoice;
-                let userSelects;
-                let compSelects;
-                let userScore=0;
-                let compScore=0;
+    let weapons=['rock', 'paper', 'scissors'];
+    let randomString;
+    let userChoice;
+    let compChoice;
+    let userScore=0;
+    let compScore=0;
+    let limit=Infinity;
 
-                for ( i = 1; i != Infinity; i++){
-                    randomChoice= Math.floor(Math.random() * choices.length);
-                    compSelects=choices[randomChoice];
-                    userSelects = prompt("Choose Your Weapon");
-                    userSelects=userSelects.toLowerCase();
+    function userPlays(){
+        userChoice = prompt("Choose Your Weapon");
+        userChoice=userChoice.toLowerCase();
+    }
 
-                    console.log("Random choice number by computer: " + randomChoice);
+    function compPlays(){
+        randomString= Math.floor(Math.random() * weapons.length);
+        compChoice=weapons[randomString];
+    }
 
-                    console.log("Computer choosen: " + compSelects);
-                    console.log("You choosen: " + userSelects);
+    function logChoices(){
+        console.log("Computer choosen: " + compChoice);
+        console.log("You choosen: " + userChoice);
+    }
 
-                    let sceneOne=(userSelects=="rock" && compSelects=="scissors");
-                    let sceneTwo=(userSelects=="paper" && compSelects=="rock");
-                    let sceneThree=(userSelects=="scissors" && compSelects=="paper");
+    function listScenes(){
+        sceneOne=(userChoice=="rock" && compChoice=="scissors");
+        sceneTwo=(userChoice=="paper" && compChoice=="rock");
+        sceneThree=(userChoice=="scissors" && compChoice=="paper");
+    }
+    
+    function calcScore(){
+        if (sceneOne || sceneTwo || sceneThree){
+            alert(userChoice + " beats " + compChoice + "\n \n You get +1");
+            userScore++;
+        } else if (userChoice===compChoice){
+            alert("Tie!");
+        } else{
+            alert(compChoice + " beats " +userChoice + "\n \n Computer gets +1");
+            compScore++;
+        }
+    }
 
-                    if (sceneOne || sceneTwo || sceneThree){
-                        alert(userSelects + " beats " + compSelects + "\n You get +1");
-                        userScore++;
-                    } else if (userSelects===compSelects){
-                        alert("Tie!");
-                    } else{
-                        alert(compSelects + " beats " +userSelects + "\n Computer gets +1");
-                        compScore++;
-                        }
-
-                    if (userScore==5){
-                    return alert("You Won!");
-                    } else if(compScore==5){
-                    return alert("Computer Won!");
-                    } else{
-                    alert("Your score is: " + userScore + "\n Computer score is: " + compScore);
-                    }
-                }
+    function isWonOrLost(){
+        if (userScore==5){
+            alert("You Won!");
+            } else if(compScore==5){
+            alert("Computer Won!");
+            } else{
+            alert("Your score is: " + userScore + "\n \n Computer score is: " + compScore);
             }
+    }
+
+    function isGameOver(){
+        if (compScore==5 || userScore==5){
+            limit=1;
+        }
+    }
+
+    button.onclick = function(){
+
+        for ( i = 1; i <= limit; i++){
+            userPlays();
+            compPlays();
+            logChoices();
+            listScenes();
+            calcScore();
+            isWonOrLost();
+            isGameOver();
+        }
+    }

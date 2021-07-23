@@ -1,0 +1,5 @@
+1. button to start the game
+2. user picks an item
+3. computer picks an item randomly
+4. items being compared and result should be adressed
+5. winner should be adressed

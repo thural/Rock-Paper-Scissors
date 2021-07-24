@@ -7,7 +7,6 @@
     let compChoice;
     let userScore=0;
     let compScore=0;
-    let maxNum=Infinity;
 
     function userPlays(){
         userChoice = prompt("Choose Your Weapon");
@@ -42,33 +41,29 @@
         }
     }
 
-    function isWonOrLost(){
-        if (userScore==5){
-            alert("You Won!");
-            } else if(compScore==5){
-            alert("Computer Won!");
-            } else{
-            alert("Your score is: " + userScore + "\n \n Computer score is: " + compScore);
-            }
-    }
+    
 
-    function isGameOver(){
-        if (compScore==5 || userScore==5){
-            compScore=0;
-            userScore=0;
-            maxNum=1;
-        }
-    }
+    
 
     button.onclick = function(){
 
-        for ( i = 1; i <= maxNum; i++){
-            userPlays();
-            compPlays();
-            logChoices();
-            listScenes();
-            calcScore();
-            isWonOrLost();
-            isGameOver();
+        for ( i = 1; i != Infinity; i++){
+                if (userScore==5){
+                alert("You Won!");
+                return compScore=0, userScore=0;
+                } else if(compScore==5){
+                 alert("Computer Won!");
+                 return compScore=0, userScore=0;
+                } else{
+                        userPlays();
+                        compPlays();
+                        logChoices();
+                        listScenes();
+                        calcScore();
+                        if( compScore!=5 && userScore!=5){
+                        alert("Your score is: " + userScore + "\n \n Computer score is: " + compScore);
+                        }
+                }
+            
         }
     }

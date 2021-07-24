@@ -7,7 +7,7 @@
     let compChoice;
     let userScore=0;
     let compScore=0;
-    let limit=Infinity;
+    let maxNum=Infinity;
 
     function userPlays(){
         userChoice = prompt("Choose Your Weapon");
@@ -54,13 +54,15 @@
 
     function isGameOver(){
         if (compScore==5 || userScore==5){
-            limit=1;
+            compScore=0;
+            userScore=0;
+            maxNum=1;
         }
     }
 
     button.onclick = function(){
 
-        for ( i = 1; i <= limit; i++){
+        for ( i = 1; i <= maxNum; i++){
             userPlays();
             compPlays();
             logChoices();

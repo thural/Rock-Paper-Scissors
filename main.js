@@ -62,7 +62,7 @@ const buttons = document.querySelector('#buttons');
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
-const newGAme = document.querySelector('newGame');
+const newGAme = document.querySelector('#newGame');
 
 //Adding onclick functionality to selected elements
 rock.addEventListener('click', ()=> playRound("rock"));

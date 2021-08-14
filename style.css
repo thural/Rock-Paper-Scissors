@@ -11,3 +11,12 @@ img {
 img:hover {
   transform: scale(1.1, 1.1);
 }
+
+button {
+  display: block;
+  margin: 30px auto;
+}
+
+button:hover{
+transform: scale(1.1, 1.1);
+}

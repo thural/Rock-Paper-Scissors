@@ -12,8 +12,8 @@ const compPlays=function(){
 };
 
 const logChoices=function(){
-    console.log("You choosen: " + playerSelection);
-    console.log("Computer choosen: " + computerSelection);
+    console.log("You chose: " + playerSelection);
+    console.log("Computer chose: " + computerSelection);
 };
 
 const listScenes=function(){
@@ -44,13 +44,16 @@ const isGameOver=function(){
         }
 };
 
+const returnResults = function(){
+  results.innerHTML='Your score: '+userScore+' Computer score: '+compScore;};
+
 const playRound=function(weapon){
     playerSelection=weapon;
     compPlays();
     logChoices();
     listScenes();
     calcScore();
-    results.innerHTML='Your score: '+userScore+' Computer score: '+compScore;
+    returnResults();
     isGameOver();
 };
 
@@ -59,12 +62,13 @@ const buttons = document.querySelector('#buttons');
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
+const newGAme = document.querySelector('newGame');
 
 //Adding onclick functionality to selected elements
 rock.addEventListener('click', ()=> playRound("rock"));
 paper.addEventListener('click', ()=> playRound("paper"));
 scissors.addEventListener('click', ()=> playRound("scissors"));
-
+newGame.addEventListener('click', ()=> {return userScore=0, compScore=0, returnResults();});
 //Creating display area for game results
 const results=document.createElement('div');
 results.innerHTML='Your score: '+userScore+' Computer score: '+compScore;

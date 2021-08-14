@@ -1,2 +1,4 @@
-# Rock_Paper_Scissors
-Creating the game as a web app from scratch using JS for an assignment by The_Odin_Project
+# rock_paper_scissors
+Creating game as a web app using JavaScript without any framework yet
+The web game is functional at this point
+UI decorations will be done later

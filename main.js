@@ -1,75 +1,63 @@
-let weapons=['rock', 'paper', 'scissors'];
-let playerSelection;
-let computerSelection;
-let userScore=0;
-let compScore=0;
-
-//creating dedicated funcions
-
-const compPlays=function(){
-    let randomString= Math.floor(Math.random() * weapons.length);
-    computerSelection=weapons[randomString];
+//Declaring global variables
+const weapons = ['rock', 'paper', 'scissors'];
+let playerChoice, computerChoice, userScore = 0, compScore = 0;
+//Creating dedicated funcions
+const computerPlays = function() {
+  let randomString = Math.floor(Math.random() * weapons.length);
+  computerChoice = weapons[randomString]
 };
-
-const logChoices=function(){
-    console.log("You chose: " + playerSelection);
-    console.log("Computer chose: " + computerSelection);
+const listScenes = function() {
+  sceneOne = (playerChoice == "rock" && computerChoice == "scissors");
+  sceneTwo = (playerChoice == "paper" && computerChoice == "rock");
+  sceneThree = (playerChoice == "scissors" && computerChoice == "paper")
 };
-
-const listScenes=function(){
-    sceneOne=(playerSelection=="rock" && computerSelection=="scissors");
-    sceneTwo=(playerSelection=="paper" && computerSelection=="rock");
-    sceneThree=(playerSelection=="scissors" && computerSelection=="paper");
+const calcScore = function() {
+  if (sceneOne || sceneTwo || sceneThree) {
+    alert(playerChoice + " beats " + computerChoice + "\n You get +1");
+    userScore++
+  } else if (playerChoice === computerChoice) {
+    alert("Tie!")
+  } else {
+    alert(computerChoice + " beats " + playerChoice + "\n Computer gets +1");
+    compScore++
+  }
 };
-
-const calcScore=function(){
-    if (sceneOne || sceneTwo || sceneThree){
-        alert(playerSelection + " beats " + computerSelection + "\n \n You get +1");
-        userScore++;
-    } else if (playerSelection===computerSelection){
-        alert("Tie!");
-    } else{
-        alert(computerSelection + " beats " + playerSelection + "\n \n Computer gets +1");
-        compScore++;
-    };
+const returnResults = function() {
+  results.textContent = `You : ${userScore} | Computer : ${compScore}`
 };
-
-const isGameOver=function(){
-    if (userScore==5){
-        alert("You Won!");
-        return compScore=0, userScore=0;
-        } else if(compScore==5){
-        alert("Computer Won!");
-        return compScore=0, userScore=0;
-        }
+const isGameOver = function() {
+  if (userScore == 5) {
+    alert("You Won!")
+  } else if (compScore == 5) {
+    alert("Computer Won!")
+  }
 };
-
-const returnResults = function(){
-  results.innerHTML='Your score: '+userScore+' Computer score: '+compScore;};
-
-const playRound=function(weapon){
-    playerSelection=weapon;
-    compPlays();
-    logChoices();
-    listScenes();
-    calcScore();
-    returnResults();
-    isGameOver();
+//Gameplay logic with function sequence
+const playRound = function() {
+  computerPlays();
+  listScenes();
+  calcScore();
+  returnResults();
+  isGameOver()
 };
-
-//Selecting HTML elements
-const buttons = document.querySelector('#buttons');
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissors = document.querySelector('#scissors');
+//Manupilate HTML elements
+const buttons = document.querySelector('.buttons');
 const newGAme = document.querySelector('#newGame');
-
-//Adding onclick functionality to selected elements
-rock.addEventListener('click', ()=> playRound("rock"));
-paper.addEventListener('click', ()=> playRound("paper"));
-scissors.addEventListener('click', ()=> playRound("scissors"));
-newGame.addEventListener('click', ()=> {return userScore=0, compScore=0, returnResults();});
+//Adding onclick functionality to the elements
+buttons.addEventListener('click', function(event) {
+  playerChoice = event.target.id;
+  if (userScore == 5 || compScore == 5) {
+    return;
+  } else if (playerChoice) {
+    return playRound()
+  }
+});
+newGame.addEventListener('click', () => {
+  return userScore = 0, compScore = 0, returnResults()
+});
 //Creating display area for game results
-const results=document.createElement('div');
-results.innerHTML='Your score: '+userScore+' Computer score: '+compScore;
-document.body.insertBefore(results, buttons);
+const results = document.querySelector('#results');
+results.textContent = `You : ${userScore} | Computer : ${compScore}`;
+
+const message = document.querySelector('#message');
+message.textContent = 'Pick Your Weapon';

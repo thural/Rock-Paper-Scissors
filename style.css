@@ -68,7 +68,6 @@ margin: 10px;
   display: grid;
   grid-auto-flow: column;
   justify-content: center;
-  border: 1px dashed black;
   margin: 10px;
 }
 

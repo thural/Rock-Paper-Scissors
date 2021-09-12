@@ -13,12 +13,12 @@ const listScenes = function() {
 };
 const calcScore = function() {
   if (sceneOne || sceneTwo || sceneThree) {
-    alert(playerChoice + " beats " + computerChoice + "\n You get +1");
+    message.textContent = playerChoice + " beats " + computerChoice + ", You get +1";
     userScore++
   } else if (playerChoice === computerChoice) {
-    alert("Tie!")
+    message.textContent = "Tie!"
   } else {
-    alert(computerChoice + " beats " + playerChoice + "\n Computer gets +1");
+    message.textContent = computerChoice + " beats " + playerChoice + ", Foe gets +1";
     compScore++
   }
 };
@@ -27,9 +27,9 @@ const returnResults = function() {
 };
 const isGameOver = function() {
   if (userScore == 5) {
-    alert("You Won!")
+    message.textContent ="You Won!"
   } else if (compScore == 5) {
-    alert("Computer Won!")
+    message.textContent ="Game Over!"
   }
 };
 //Gameplay logic with function sequence
@@ -53,11 +53,11 @@ buttons.addEventListener('click', function(event) {
   }
 });
 newGame.addEventListener('click', () => {
-  return userScore = 0, compScore = 0, returnResults()
+  return userScore = 0, compScore = 0, message.textContent = 'Choose Your Weapon!',returnResults()
 });
 //Creating display area for game results
 const results = document.querySelector('#results');
 results.textContent = `You : ${userScore} | Computer : ${compScore}`;
 
 const message = document.querySelector('#message');
-message.textContent = 'Pick Your Weapon';
+message.textContent = 'Choose Your Weapon!';

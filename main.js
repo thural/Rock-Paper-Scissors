@@ -1,16 +1,19 @@
 //Declaring global variables
 const weapons = ['rock', 'paper', 'scissors'];
 let playerChoice, computerChoice, userScore = 0, compScore = 0;
+
 //Creating dedicated funcions
 const computerPlays = function() {
   let randomString = Math.floor(Math.random() * weapons.length);
   computerChoice = weapons[randomString]
 };
+
 const listScenes = function() {
   sceneOne = (playerChoice == "rock" && computerChoice == "scissors");
   sceneTwo = (playerChoice == "paper" && computerChoice == "rock");
   sceneThree = (playerChoice == "scissors" && computerChoice == "paper")
 };
+
 const calcScore = function() {
   if (sceneOne || sceneTwo || sceneThree) {
     message.textContent = playerChoice + " beats " + computerChoice + ", You get +1";
@@ -22,9 +25,11 @@ const calcScore = function() {
     compScore++
   }
 };
+
 const returnResults = function() {
   results.textContent = `You : ${userScore} | Computer : ${compScore}`
 };
+
 const isGameOver = function() {
   if (userScore == 5) {
     message.textContent ="You Won!"
@@ -32,6 +37,7 @@ const isGameOver = function() {
     message.textContent ="Game Over!"
   }
 };
+
 //Gameplay logic with function sequence
 const playRound = function() {
   computerPlays();
@@ -40,9 +46,11 @@ const playRound = function() {
   returnResults();
   isGameOver()
 };
+
 //Manupilate HTML elements
 const buttons = document.querySelector('.buttons');
-const newGAme = document.querySelector('#newGame');
+const newGame = document.querySelector('#newGame');
+
 //Adding onclick functionality to the elements
 buttons.addEventListener('click', function(event) {
   playerChoice = event.target.id;
@@ -52,9 +60,11 @@ buttons.addEventListener('click', function(event) {
     return playRound()
   }
 });
+
 newGame.addEventListener('click', () => {
   return userScore = 0, compScore = 0, message.textContent = 'Choose Your Weapon!',returnResults()
 });
+
 //Creating display area for game results
 const results = document.querySelector('#results');
 results.textContent = `You : ${userScore} | Computer : ${compScore}`;
